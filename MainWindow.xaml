@@ -31,22 +31,22 @@
 
         <TextBlock Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="10"
                    Text="Password Manager" FontSize="36" HorizontalAlignment="Center"
-                   VerticalAlignment="Center" Foreground="#FF959595" FontWeight="Bold"/>
+                   VerticalAlignment="Center" Foreground="#FFBFBEBE" FontWeight="Bold"/>
 
         <Button x:Name="newButton" Content="new" Grid.Column="2" Grid.Row="6" Margin="10"
                 Width="100" MaxHeight="50" MaxWidth="100" Click="newButton_Click"
-                Background="#FF959592" Foreground="#FF272727" />
+                Background="#FFBFBEBE" Foreground="#FF272727" />
         
-        <Button x:Name="updateButton" Content="update" Grid.Column="3" Grid.Row="6" Margin="10"
-                Width="100" MaxHeight="50" MaxWidth="100" Click="updateButton_Click"
-                Background="#FF959592" Foreground="#FF272727" />
+        <Button x:Name="viewButton" Content="view" Grid.Column="3" Grid.Row="6" Margin="10"
+                Width="100" MaxHeight="50" MaxWidth="100" Click="viewButton_Click"
+                Background="#FFBFBEBE" Foreground="#FF272727" />
 
         <Button x:Name="deleteButton" Content="delete" Grid.Column="4" Grid.Row="6" Margin="10"
                 Width="100" MaxHeight="50" MaxWidth="100" Click="deleteButton_Click"
-                Background="#FF959592" Foreground="#FF272727" />
+                Background="#FFBFBEBE" Foreground="#FF272727" />
 
         <ListBox x:Name="entriesListBox" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3"
-                 Margin="20" Background="#FF959592" SelectionChanged="entriesListBox_SelectionChanged"
+                 Margin="20" Background="#FFBFBEBE" SelectionChanged="entriesListBox_SelectionChanged"
                  MinHeight="250" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ListBox.ItemTemplate>
                 <DataTemplate>

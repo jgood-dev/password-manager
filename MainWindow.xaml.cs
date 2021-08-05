@@ -43,13 +43,12 @@ namespace PassMgr
             entriesListBox.ItemsSource = entries;
         }
 
-        private void updateButton_Click(object sender, RoutedEventArgs e)
+        private void viewButton_Click(object sender, RoutedEventArgs e)
         {
             Entry entry = this.entriesListBox.SelectedItem as Entry;
             updateEntry();
 
         }
-
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -62,7 +61,7 @@ namespace PassMgr
 
             if (idx != -1)
             {
-                updateButton.IsEnabled = true;
+                viewButton.IsEnabled = true;
             }
         }
 
@@ -74,7 +73,7 @@ namespace PassMgr
         private void AddEntry()
         {
             AddEntry aE = new AddEntry();
-            
+
             if (aE.ShowDialog().Value)
             {
                 Entry newEntry = new Entry();
@@ -89,8 +88,8 @@ namespace PassMgr
 
                 LoadEntriesList();
             }
-            
-            
+
+
         }
 
         private void updateEntry()
