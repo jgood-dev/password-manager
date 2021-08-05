@@ -1,0 +1,65 @@
+﻿<Window x:Class="PassMgr.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PassMgr"
+        mc:Ignorable="d" FontSize="18" FontFamily="Montserrat"
+        Title="Password Manager" Height="475" Width="400" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="430" Background="#FF272727">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="10"
+                   Text="Password Manager" FontSize="36" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Foreground="#FF959595" FontWeight="Bold"/>
+
+        <Button x:Name="newButton" Content="new" Grid.Column="2" Grid.Row="6" Margin="10"
+                Width="100" MaxHeight="50" MaxWidth="100" Click="newButton_Click"
+                Background="#FF959592" Foreground="#FF272727" />
+        
+        <Button x:Name="updateButton" Content="update" Grid.Column="3" Grid.Row="6" Margin="10"
+                Width="100" MaxHeight="50" MaxWidth="100" Click="updateButton_Click"
+                Background="#FF959592" Foreground="#FF272727" />
+
+        <Button x:Name="deleteButton" Content="delete" Grid.Column="4" Grid.Row="6" Margin="10"
+                Width="100" MaxHeight="50" MaxWidth="100" Click="deleteButton_Click"
+                Background="#FF959592" Foreground="#FF272727" />
+
+        <ListBox x:Name="entriesListBox" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3"
+                 Margin="20" Background="#FF959592" SelectionChanged="entriesListBox_SelectionChanged"
+                 MinHeight="250" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="{Binding Alias}" />
+                        <TextBlock Text="        "/>
+                        <TextBlock Text="("/>
+                        <TextBlock Text="{Binding Username}"/>
+                        <TextBlock Text=")"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
