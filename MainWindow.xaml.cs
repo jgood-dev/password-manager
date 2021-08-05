@@ -53,7 +53,7 @@ namespace PassMgr
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //delete method here
         }
 
         private void entriesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
