@@ -8,15 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 
-// C:\Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod01\LabFiles\20483-Programming-in-C-Sharp\Allfiles\Mod02\Labfiles\Starter\Exercise 3
-// ^^^^  events
-
-// C:\Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod03\20483-Programming-in-C-Sharp\Allfiles\Mod03\Labfiles\Starter\Exercise 2
-// ^^^^ structs for entry
-
-// C:\Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod03\20483-Programming-in-C-Sharp\Allfiles\Mod03\Labfiles\Starter\Exercise 3
-// ^^^^ logon and handling logon events
-
 namespace PassMgr
 {
     public class SqliteDataAccess
