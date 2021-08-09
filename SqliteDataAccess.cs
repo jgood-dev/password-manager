@@ -21,22 +21,40 @@ namespace PassMgr
             }
         }
 
+        public static Entry GetEntryInfo(string alias)
+        {
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var e = connection.Query<Entry>("SELECT * FROM Entries WHERE Alias = {0}", alias);
+                return e as Entry;
+            }
+        }
+
         public static void SaveEntry(Entry entry)
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO Entries (Alias, Url, Username, Password) VALUES (@Alias, @Url, @Username, @Password)", entry);
+                connection.Execute("INSERT INTO Entries (Alias, Url, Username, Password)" +
+                    "VALUES (@Alias, @Url, @Username, @Password)", entry);
             }
         }
 
         public static void DeleteEntry(Entry entry)
         {
-
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM Entries WHERE Alias = @Alias", entry);
+            }
         }
 
         public static void UpdateEntry(Entry entry)
         {
-
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE Entries" +
+                    "SET Alias = @Alias, Url = @Url, Username = @Username, Password = @Password" +
+                    "WHERE Alias = @Alias", entry);
+            }
         }
 
         private static string LoadConnectionString(string id = "PassMgrDB")
