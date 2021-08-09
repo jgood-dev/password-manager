@@ -25,19 +25,15 @@ using PassMgr.Views;
 
 namespace PassMgr
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        List<Entry> entries = new List<Entry>();
+        List<Entry> entries = new();
 
         public MainWindow()
         {
             InitializeComponent();
             LoadEntriesList();
         }
-
         private void LoadEntriesList()
         {
             entries = null;
@@ -50,17 +46,14 @@ namespace PassMgr
             entriesListBox.ItemsSource = null;
             entriesListBox.ItemsSource = entries;
         }
-
         private void viewButton_Click(object sender, RoutedEventArgs e)
         {
             ViewEntry();
         }
-
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             DeleteEntry();
         }
-
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
             AddEntry();
@@ -74,7 +67,6 @@ namespace PassMgr
                 viewButton.Visibility = Visibility.Visible;
             }
         }
-
         private void AddEntry()
         {
             AddEntry aE = new();
@@ -94,7 +86,6 @@ namespace PassMgr
                 LoadEntriesList();
             }
         }
-
         private void DeleteEntry()
         {
             Entry entry = this.entriesListBox.SelectedItem as Entry;
@@ -102,7 +93,6 @@ namespace PassMgr
 
             LoadEntriesList();
         }
-
         private void ViewEntry()
         {
             int entriesIdx = this.entriesListBox.SelectedIndex;
@@ -126,8 +116,5 @@ namespace PassMgr
                 LoadEntriesList();
             }
         }
-
-
-                
     }
 }

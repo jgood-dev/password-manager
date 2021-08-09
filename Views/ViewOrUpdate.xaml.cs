@@ -14,25 +14,17 @@ using System.Windows.Shapes;
 
 namespace PassMgr.Views
 {
-    /// <summary>
-    /// Interaction logic for ViewOrUpdate.xaml
-    /// </summary>
     public partial class ViewOrUpdate : Window
     {
         public ViewOrUpdate(Entry entry)
         {
-            Entry e = entry;
-
             InitializeComponent();
-            LoadInfo(e);
+            LoadInfo(entry);
         }
-
-
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             updateEntry();
         }
-
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(this.aliasTextBox.Text))
@@ -68,7 +60,6 @@ namespace PassMgr.Views
             usernameTextBox.Text = e.Username;
             passwordTextBox.Text = e.Password;
         }
-
         private void updateEntry()
         {
             aliasTextBox.IsReadOnly = false;
