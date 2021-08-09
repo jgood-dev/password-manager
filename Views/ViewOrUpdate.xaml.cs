@@ -12,22 +12,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PassMgr
+namespace PassMgr.Views
 {
     /// <summary>
-    /// Interaction logic for AddEntry.xaml
+    /// Interaction logic for ViewOrUpdate.xaml
     /// </summary>
-    public partial class AddEntry : Window
+    public partial class ViewOrUpdate : Window
     {
-        public AddEntry()
+        public ViewOrUpdate(Entry entry)
         {
+            Entry e = entry;
+
             InitializeComponent();
+            LoadInfo(e);
+        }
+
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+            updateEntry();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            //Entry newEntry = new Entry();
-
             if (String.IsNullOrEmpty(this.aliasTextBox.Text))
             {
                 MessageBox.Show("There must be an alias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -53,6 +60,29 @@ namespace PassMgr
             }
 
             this.DialogResult = true;
+        }
+        private void LoadInfo(Entry e)
+        {
+            aliasTextBox.Text = e.Alias;
+            urlTextBox.Text = e.Url;
+            usernameTextBox.Text = e.Username;
+            passwordTextBox.Text = e.Password;
+        }
+
+        private void updateEntry()
+        {
+            aliasTextBox.IsReadOnly = false;
+            urlTextBox.IsReadOnly = false;
+            usernameTextBox.IsReadOnly = false;
+            passwordTextBox.IsReadOnly = false;
+
+            aliasTextBox.Background = Brushes.White;
+            urlTextBox.Background = Brushes.White;
+            usernameTextBox.Background = Brushes.White;
+            passwordTextBox.Background = Brushes.White;
+
+            saveButton.Visibility = Visibility.Visible;
+            updateButton.Visibility = Visibility.Collapsed;
         }
     }
 }

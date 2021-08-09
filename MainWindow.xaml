@@ -39,7 +39,7 @@
         
         <Button x:Name="viewButton" Content="view" Grid.Column="3" Grid.Row="6" Margin="10"
                 Width="100" MaxHeight="50" MaxWidth="100" Click="viewButton_Click"
-                Background="#FFBFBEBE" Foreground="#FF272727" />
+                Background="#FFBFBEBE" Foreground="#FF272727" Visibility="Collapsed"/>
 
         <Button x:Name="deleteButton" Content="delete" Grid.Column="4" Grid.Row="6" Margin="10"
                 Width="100" MaxHeight="50" MaxWidth="100" Click="deleteButton_Click"

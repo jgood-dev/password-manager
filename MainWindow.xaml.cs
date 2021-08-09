@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Collections.ObjectModel;
+using PassMgr.Views;
 
 //C: \Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod03\20483-Programming-in-C-Sharp\Allfiles\Mod04\Labfiles\Starter\Exercise 4
 // ^^^ reference project ^^^
@@ -41,6 +42,10 @@ namespace PassMgr
         {
             entries = null;
             entries = SqliteDataAccess.LoadEntries();
+            entries.Sort(delegate (Entry first, Entry second)
+            {
+                return first.Alias.CompareTo(second.Alias);
+            });
 
             entriesListBox.ItemsSource = null;
             entriesListBox.ItemsSource = entries;
@@ -48,34 +53,31 @@ namespace PassMgr
 
         private void viewButton_Click(object sender, RoutedEventArgs e)
         {
-            Entry entry = this.entriesListBox.SelectedItem as Entry;
-            updateEntry();
-
+            ViewEntry();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            //delete method here
-        }
-
-        private void entriesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int idx = entriesListBox.SelectedIndex;
-
-            if (idx != -1)
-            {
-                viewButton.IsEnabled = true;
-            }
+            DeleteEntry();
         }
 
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
             AddEntry();
         }
+        private void entriesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int idx = (sender as ListBox).SelectedIndex;
+
+            if (idx != -1)
+            {
+                viewButton.Visibility = Visibility.Visible;
+            }
+        }
 
         private void AddEntry()
         {
-            AddEntry aE = new AddEntry();
+            AddEntry aE = new();
 
             if (aE.ShowDialog().Value)
             {
@@ -91,13 +93,41 @@ namespace PassMgr
 
                 LoadEntriesList();
             }
-
-
         }
 
-        private void updateEntry()
+        private void DeleteEntry()
         {
-            throw new NotImplementedException();
+            Entry entry = this.entriesListBox.SelectedItem as Entry;
+            SqliteDataAccess.DeleteEntry(entry);
+
+            LoadEntriesList();
         }
+
+        private void ViewEntry()
+        {
+            int entriesIdx = this.entriesListBox.SelectedIndex;
+
+            Entry e = entries[entriesIdx];
+            ViewOrUpdate viewEntry = new(e);
+
+            if (viewEntry.ShowDialog().Value)
+            {
+                Entry newEntry = new Entry();
+                newEntry.Alias = viewEntry.aliasTextBox.Text;
+                newEntry.Url = viewEntry.urlTextBox.Text;
+                newEntry.Username = viewEntry.usernameTextBox.Text;
+                newEntry.Password = viewEntry.passwordTextBox.Text;
+
+                this.entries[entriesIdx] = newEntry;
+
+                SqliteDataAccess.DeleteEntry(e);
+                SqliteDataAccess.SaveEntry(newEntry);
+
+                LoadEntriesList();
+            }
+        }
+
+
+                
     }
 }
