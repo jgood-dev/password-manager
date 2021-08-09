@@ -20,8 +20,8 @@ using System.IO;
 using System.Collections.ObjectModel;
 using PassMgr.Views;
 
-//C: \Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod03\20483-Programming-in-C-Sharp\Allfiles\Mod04\Labfiles\Starter\Exercise 4
-// ^^^ reference project ^^^
+// C:\Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod06\20483-Programming-in-C-Sharp\Allfiles\Mod06\Labfiles\Starter\Exercise 2
+// ^^^ current reference project ^^^
 
 namespace PassMgr
 {
