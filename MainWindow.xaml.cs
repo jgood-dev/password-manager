@@ -20,23 +20,28 @@ using System.IO;
 using System.Collections.ObjectModel;
 using PassMgr.Views;
 
-//C: \Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod03\20483-Programming-in-C-Sharp\Allfiles\Mod04\Labfiles\Starter\Exercise 4
-// ^^^ reference project ^^^
+// C:\Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod06\20483-Programming-in-C-Sharp\Allfiles\Mod06\Labfiles\Starter\Exercise 2
+// ^^^ current reference project ^^^
 
 namespace PassMgr
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        List<Entry> entries = new List<Entry>();
+        List<Entry> entries = new();
+        User user = new();
 
         public MainWindow()
         {
             InitializeComponent();
             LoadEntriesList();
         }
+
+        //private void GoToLogon()
+        //{
+        //    UserLogonPage logonPage = new();
+        //    logonPage.ShowDialog();
+            
+        //}
 
         private void LoadEntriesList()
         {
@@ -50,17 +55,14 @@ namespace PassMgr
             entriesListBox.ItemsSource = null;
             entriesListBox.ItemsSource = entries;
         }
-
         private void viewButton_Click(object sender, RoutedEventArgs e)
         {
             ViewEntry();
         }
-
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             DeleteEntry();
         }
-
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
             AddEntry();
@@ -74,7 +76,6 @@ namespace PassMgr
                 viewButton.Visibility = Visibility.Visible;
             }
         }
-
         private void AddEntry()
         {
             AddEntry aE = new();
@@ -94,7 +95,6 @@ namespace PassMgr
                 LoadEntriesList();
             }
         }
-
         private void DeleteEntry()
         {
             Entry entry = this.entriesListBox.SelectedItem as Entry;
@@ -102,7 +102,6 @@ namespace PassMgr
 
             LoadEntriesList();
         }
-
         private void ViewEntry()
         {
             int entriesIdx = this.entriesListBox.SelectedIndex;
@@ -126,8 +125,5 @@ namespace PassMgr
                 LoadEntriesList();
             }
         }
-
-
-                
     }
 }
