@@ -7,16 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using PassMgr.Services;
+using PassMgr.Views;
 
 namespace PassMgr
 {
     public class SqliteDataAccess
     {
-        public static List<Entry> LoadEntries()
-        {                        
+        public static List<User> LoadUsers()
+        {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = connection.Query<Entry>("SELECT * FROM Entries", new DynamicParameters());
+                var output = connection.Query<User>("SELECT * FROM Users", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static List<Entry> LoadEntries()
+        {
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<Entry>($"SELECT * FROM Entries INNER JOIN Users ON Users.userID = Entries.userID WHERE Users.username = '{SessionContext.Username}'", new DynamicParameters());
                 return output.ToList();
             }
         }

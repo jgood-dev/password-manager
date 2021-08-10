@@ -28,12 +28,21 @@ namespace PassMgr
     public partial class MainWindow : Window
     {
         List<Entry> entries = new();
+        User user = new();
 
         public MainWindow()
         {
             InitializeComponent();
             LoadEntriesList();
         }
+
+        //private void GoToLogon()
+        //{
+        //    UserLogonPage logonPage = new();
+        //    logonPage.ShowDialog();
+            
+        //}
+
         private void LoadEntriesList()
         {
             entries = null;
