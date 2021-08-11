@@ -52,5 +52,10 @@ namespace PassMgr
 
             this.DialogResult = true;
         }
+        //private void OnWindowClosing(object sender, RoutedEventArgs e)
+        //{
+        //    MainWindow main = new();
+        //    main.Visibility = Visibility.Visible;
+        //}
     }
 }

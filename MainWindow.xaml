@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PassMgr"
         mc:Ignorable="d" FontSize="18" FontFamily="Montserrat"
-        Title="Password Manager" Height="475" Width="400" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="430" Background="#FF272727">
+        Title="Password Manager" Height="500" Width="500" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="430" Background="#FF272727">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />

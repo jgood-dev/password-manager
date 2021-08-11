@@ -61,14 +61,22 @@ namespace PassMgr.Views
                     user.password == this.passwordTextBox.Text)
                 {
                     SessionContext.Username = user.username;
-                    //MessageBox.Show("Successful logon", "Success", MessageBoxButton.OK);
 
                     MainWindow main = new();
+                    this.Visibility = Visibility.Collapsed;
                     main.ShowDialog();
+                    
                 }
             }
-            //MessageBox.Show("Failed logon", "Error", MessageBoxButton.OK);
         }
         #endregion
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+        }
+
     }
 }

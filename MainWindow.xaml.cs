@@ -28,20 +28,12 @@ namespace PassMgr
     public partial class MainWindow : Window
     {
         List<Entry> entries = new();
-        User user = new();
 
         public MainWindow()
         {
             InitializeComponent();
             LoadEntriesList();
         }
-
-        //private void GoToLogon()
-        //{
-        //    UserLogonPage logonPage = new();
-        //    logonPage.ShowDialog();
-            
-        //}
 
         private void LoadEntriesList()
         {
@@ -76,8 +68,15 @@ namespace PassMgr
                 viewButton.Visibility = Visibility.Visible;
             }
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+        }
         private void AddEntry()
         {
+            this.Visibility = Visibility.Collapsed;
             AddEntry aE = new();
 
             if (aE.ShowDialog().Value)
@@ -91,14 +90,18 @@ namespace PassMgr
                 this.entries.Add(newEntry);
 
                 SqliteDataAccess.SaveEntry(newEntry);
-
+                viewButton.Visibility = Visibility.Collapsed;
+                this.Visibility = Visibility.Visible;
                 LoadEntriesList();
             }
+
+            this.Visibility = Visibility.Visible;
         }
         private void DeleteEntry()
         {
             Entry entry = this.entriesListBox.SelectedItem as Entry;
             SqliteDataAccess.DeleteEntry(entry);
+            viewButton.Visibility = Visibility.Collapsed;
 
             LoadEntriesList();
         }
