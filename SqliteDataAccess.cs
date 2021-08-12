@@ -23,20 +23,40 @@ namespace PassMgr
             }
         }
 
+        public static void NewEntryTable()
+        {
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute($"CREATE TABLE {SessionContext.Username} (Alias TEXT NOT NULL, " +
+                    "Url TEXT NOT NULL, Username TEXT NOT NULL, Password TEXT NOT NULL, " +
+                    "PRIMARY KEY(Alias, Username))");
+            }
+        }
+        public static void NewUser(User user)
+        {
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO Users (Username, Password)" +
+                    "VALUES (@Username, @Password)", user);
+            }
+
+            NewEntryTable();
+        }
+
         public static List<Entry> LoadEntries()
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = connection.Query<Entry>($"SELECT * FROM Entries INNER JOIN Users ON Users.userID = Entries.userID WHERE Users.username = '{SessionContext.Username}'", new DynamicParameters());
+                var output = connection.Query<Entry>($"SELECT * FROM {SessionContext.Username}", new DynamicParameters());
                 return output.ToList();
             }
         }
 
-        public static Entry GetEntryInfo(string alias)
+        public static Entry GetEntryInfo()
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var e = connection.Query<Entry>("SELECT * FROM Entries WHERE Alias = {0}", alias);
+                var e = connection.Query<Entry>($"SELECT * FROM {SessionContext.Username}");
                 return e as Entry;
             }
         }
@@ -45,7 +65,7 @@ namespace PassMgr
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO Entries (Alias, Url, Username, Password)" +
+                connection.Execute($"INSERT INTO {SessionContext.Username} (Alias, Url, Username, Password)" +
                     "VALUES (@Alias, @Url, @Username, @Password)", entry);
             }
         }
@@ -54,7 +74,7 @@ namespace PassMgr
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("DELETE FROM Entries WHERE Alias = @Alias", entry);
+                connection.Execute($"DELETE FROM {SessionContext.Username} WHERE Alias = @Alias", entry);
             }
         }
 
@@ -62,8 +82,8 @@ namespace PassMgr
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("UPDATE Entries" +
-                    "SET Alias = @Alias, Url = @Url, Username = @Username, Password = @Password" +
+                connection.Execute($"UPDATE {SessionContext.Username} SET Alias = @Alias," +
+                    "Url = @Url, Username = @Username, Password = @Password" +
                     "WHERE Alias = @Alias", entry);
             }
         }

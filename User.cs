@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace PassMgr
 {
+
     public class User
     {
         public string username { get; set; }
         public string password { get; set; }
-
-        public User()
-        {
-            username = "";
-            password = "";
-        }
 
         public User(string username, string password)
         {

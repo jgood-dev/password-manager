@@ -13,12 +13,15 @@ namespace PassMgr
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public string MainInfo
+        public Entry()
+        { }
+
+        public Entry(string alias, string url, string username, string password)
         {
-            get
-            {
-                return $"{Alias} {Url} {Username}";
-            }
+            this.Alias = alias;
+            this.Url = url;
+            this.Username = username;
+            this.Password = password;
         }
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PassMgr.Views"
         mc:Ignorable="d" FontSize="18" FontFamily="Montserrat"
-        Title="View Entry" Height="350" Width="400" MinHeight="280" MinWidth="380" Background="#FF272727" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="View Entry" Height="500" Width="500" MinHeight="280" MinWidth="380" Background="#FF272727" WindowStartupLocation="CenterScreen">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="Auto" />
