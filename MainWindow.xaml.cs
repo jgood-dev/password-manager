@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Collections.ObjectModel;
 using PassMgr.Views;
+using PassMgr.Services;
 
 // C:\Users\goodw\OneDrive\Desktop\MSSA\Labs\C#\Mod06\20483-Programming-in-C-Sharp\Allfiles\Mod06\Labfiles\Starter\Exercise 2
 // ^^^ current reference project ^^^
@@ -68,15 +69,15 @@ namespace PassMgr
                 viewButton.Visibility = Visibility.Visible;
             }
         }
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
+        //protected override void OnClosed(EventArgs e)
+        //{
+        //    base.OnClosed(e);
 
-            Application.Current.Shutdown();
-        }
+        //    Application.Current.Shutdown();
+        //}
         private void AddEntry()
         {
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             AddEntry aE = new();
 
             if (aE.ShowDialog().Value)
@@ -91,7 +92,7 @@ namespace PassMgr
 
                 SqliteDataAccess.SaveEntry(newEntry);
                 viewButton.Visibility = Visibility.Collapsed;
-                this.Visibility = Visibility.Visible;
+                //this.Visibility = Visibility.Visible;
                 LoadEntriesList();
             }
 
@@ -127,6 +128,15 @@ namespace PassMgr
 
                 LoadEntriesList();
             }
+            viewButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void logOffButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            //this.Visibility = Visibility.Collapsed;
+            //UserLogonPage userLogon = new();
+            //userLogon.ShowDialog();
         }
     }
 }

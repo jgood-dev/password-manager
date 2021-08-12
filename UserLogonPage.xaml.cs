@@ -15,9 +15,6 @@ using PassMgr.Services;
 
 namespace PassMgr.Views
 {
-    /// <summary>
-    /// Interaction logic for UserLogonPage.xaml
-    /// </summary>
     public partial class UserLogonPage : Window
     {
         List<User> users = new();
@@ -25,12 +22,14 @@ namespace PassMgr.Views
         public UserLogonPage()
         {
             InitializeComponent();
+            SessionContext.Username = null;
             GetUsers();
         }
 
         #region Data Access
         private void GetUsers()
         {
+            users = null;
             users = SqliteDataAccess.LoadUsers();
         }
         #endregion
@@ -62,12 +61,18 @@ namespace PassMgr.Views
                 {
                     SessionContext.Username = user.username;
 
-                    MainWindow main = new();
                     this.Visibility = Visibility.Collapsed;
-                    main.ShowDialog();
+                    new MainWindow().ShowDialog();
                     
+
+                    // when user logs off, logon page opens and info is cleared
+                    this.usernameTextBox.Clear();
+                    this.passwordTextBox.Clear();
+                    this.Visibility = Visibility.Visible;
+                    return;
                 }
             }
+            MessageBox.Show("Invalid username or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
 
@@ -78,5 +83,44 @@ namespace PassMgr.Views
             Application.Current.Shutdown();
         }
 
+        private void newUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.usernameTextBox.Text))
+            {
+                MessageBox.Show("You must enter a username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(this.passwordTextBox.Text))
+            {
+                MessageBox.Show("You must enter a password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            List<string> usernames = new();
+            users.ForEach(s => usernames.Add(s.username));
+
+            User newUser = new(this.usernameTextBox.Text, this.passwordTextBox.Text);
+
+            if (usernames.Contains(newUser.username))
+            {
+                MessageBox.Show("This username is already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                SessionContext.Username = newUser.username;
+                SqliteDataAccess.NewUser(newUser);
+                MessageBox.Show("New user created successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                MainWindow main = new();
+                this.Visibility = Visibility.Collapsed;
+                main.ShowDialog();
+
+                // When user logs off from new user account, logon page opens and info is cleared
+                this.usernameTextBox.Clear();
+                this.passwordTextBox.Clear();
+                this.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

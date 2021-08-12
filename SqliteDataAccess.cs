@@ -23,11 +23,11 @@ namespace PassMgr
             }
         }
 
-        public static void NewEntryTable(string username)
+        public static void NewEntryTable()
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute($"CREATE TABLE {username} (Alias TEXT NOT NULL, " +
+                connection.Execute($"CREATE TABLE {SessionContext.Username} (Alias TEXT NOT NULL, " +
                     "Url TEXT NOT NULL, Username TEXT NOT NULL, Password TEXT NOT NULL, " +
                     "PRIMARY KEY(Alias, Username))");
             }
@@ -40,7 +40,7 @@ namespace PassMgr
                     "VALUES (@Username, @Password)", user);
             }
 
-            NewEntryTable(user.username);
+            NewEntryTable();
         }
 
         public static List<Entry> LoadEntries()

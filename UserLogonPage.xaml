@@ -23,6 +23,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -44,5 +45,9 @@
         <Button x:Name="logonButton" Content="log on" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"
                 MinHeight="50" Margin="30" Background="#FFBFBEBE" Foreground="#FF272727"
                 Click="logonButton_Click"/>
+
+        <Button x:Name="newUserButton" Content="new user" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"
+                MinHeight="50" Margin="30, 0, 30, 30" Background="#FFBFBEBE" Foreground="#FF272727"
+                Click="newUserButton_Click"/>
     </Grid>
 </Window>
