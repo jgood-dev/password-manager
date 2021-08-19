@@ -48,7 +48,7 @@ namespace PassMgr.Views
                 return;
             }
 
-            if (String.IsNullOrEmpty(this.passwordTextBox.Text))
+            if (String.IsNullOrEmpty(this.passwordTextBox.Password))
             {
                 MessageBox.Show("You must enter a password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -57,7 +57,7 @@ namespace PassMgr.Views
             foreach (User user in users)
             {
                 if (user.username == this.usernameTextBox.Text &&
-                    user.password == this.passwordTextBox.Text)
+                    user.password == this.passwordTextBox.Password)
                 {
                     SessionContext.Username = user.username;
 
@@ -91,7 +91,7 @@ namespace PassMgr.Views
                 return;
             }
 
-            if (String.IsNullOrEmpty(this.passwordTextBox.Text))
+            if (String.IsNullOrEmpty(this.passwordTextBox.Password))
             {
                 MessageBox.Show("You must enter a password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -100,7 +100,7 @@ namespace PassMgr.Views
             List<string> usernames = new();
             users.ForEach(s => usernames.Add(s.username));
 
-            User newUser = new(this.usernameTextBox.Text, this.passwordTextBox.Text);
+            User newUser = new(this.usernameTextBox.Text, this.passwordTextBox.Password);
 
             if (usernames.Contains(newUser.username))
             {
@@ -110,6 +110,8 @@ namespace PassMgr.Views
             {
                 SessionContext.Username = newUser.username;
                 SqliteDataAccess.NewUser(newUser);
+                GetUsers();
+
                 MessageBox.Show("New user created successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 MainWindow main = new();
@@ -121,6 +123,24 @@ namespace PassMgr.Views
                 this.passwordTextBox.Clear();
                 this.Visibility = Visibility.Visible;
             }
+        }
+
+        private void chkShowPassword_Checked(object sender, RoutedEventArgs e)
+        {
+            passwordTextBoxShow.Text = passwordTextBox.Password;
+            passwordTextBox.Visibility = Visibility.Collapsed;
+            passwordTextBoxShow.Visibility = Visibility.Visible;
+
+            passwordTextBoxShow.Focus();
+        }
+
+        private void chkShowPassword_Unchecked(object sender, RoutedEventArgs e)
+        {
+            passwordTextBox.Password = passwordTextBoxShow.Text;
+            passwordTextBox.Visibility = Visibility.Visible;
+            passwordTextBoxShow.Visibility = Visibility.Collapsed;
+
+            passwordTextBox.Focus();
         }
     }
 }
