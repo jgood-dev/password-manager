@@ -47,6 +47,7 @@ namespace PassMgr
 
             entriesListBox.ItemsSource = null;
             entriesListBox.ItemsSource = entries;
+            txblkUser.Text = SessionContext.Username;
         }
         private void viewButton_Click(object sender, RoutedEventArgs e)
         {

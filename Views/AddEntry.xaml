@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PassMgr"
         mc:Ignorable="d" FontSize="18" FontFamily="Montserrat"
-        Title="New Entry" Height="500" Width="500" WindowStartupLocation="CenterScreen"
+        Title="New Entry" Height="350" Width="450" WindowStartupLocation="CenterScreen"
         MinHeight="280" MinWidth="380" Background="#FF272727">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
@@ -26,6 +26,9 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
+        <TextBlock x:Name="txblkUser" Grid.Column="2" Grid.Row="0" Text="User" HorizontalAlignment="Right"
+                   Foreground="#FFBFBEBE" FontSize="16" Margin="0,0,20,0"/>
+        
         <TextBlock Grid.Column="1" Grid.Row="1" Text="alias" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#FFBFBEBE"/>
         <TextBlock Grid.Column="1" Grid.Row="2" Text="url" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#FFBFBEBE"/>
         <TextBlock Grid.Column="1" Grid.Row="3" Text="username" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#FFBFBEBE"/>

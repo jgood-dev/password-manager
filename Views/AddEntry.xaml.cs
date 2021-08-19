@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PassMgr.Services;
 
 namespace PassMgr
 {
@@ -22,10 +23,12 @@ namespace PassMgr
         public AddEntry()
         {
             InitializeComponent();
+            txblkUser.Text = SessionContext.Username;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+
             if (String.IsNullOrEmpty(this.aliasTextBox.Text))
             {
                 MessageBox.Show("There must be an alias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

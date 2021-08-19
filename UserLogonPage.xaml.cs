@@ -68,6 +68,8 @@ namespace PassMgr.Views
                     // when user logs off, logon page opens and info is cleared
                     this.usernameTextBox.Clear();
                     this.passwordTextBox.Clear();
+                    this.passwordTextBoxShow.Clear();
+                    this.chkShowPassword.IsChecked = false;
                     this.Visibility = Visibility.Visible;
                     return;
                 }
