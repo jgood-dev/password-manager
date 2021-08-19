@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PassMgr.Services;
 
 namespace PassMgr.Views
 {
@@ -55,6 +56,7 @@ namespace PassMgr.Views
         }
         private void LoadInfo(Entry e)
         {
+            txblkUser.Text = SessionContext.Username;
             aliasTextBox.Text = e.Alias;
             urlTextBox.Text = e.Url;
             usernameTextBox.Text = e.Username;

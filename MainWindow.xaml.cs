@@ -47,6 +47,7 @@ namespace PassMgr
 
             entriesListBox.ItemsSource = null;
             entriesListBox.ItemsSource = entries;
+            txblkUser.Text = SessionContext.Username;
         }
         private void viewButton_Click(object sender, RoutedEventArgs e)
         {
@@ -69,12 +70,7 @@ namespace PassMgr
                 viewButton.Visibility = Visibility.Visible;
             }
         }
-        //protected override void OnClosed(EventArgs e)
-        //{
-        //    base.OnClosed(e);
 
-        //    Application.Current.Shutdown();
-        //}
         private void AddEntry()
         {
             //this.Visibility = Visibility.Collapsed;
@@ -134,9 +130,6 @@ namespace PassMgr
         private void logOffButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            //this.Visibility = Visibility.Collapsed;
-            //UserLogonPage userLogon = new();
-            //userLogon.ShowDialog();
         }
     }
 }

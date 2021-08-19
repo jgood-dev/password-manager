@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PassMgr"
         mc:Ignorable="d" FontSize="18" FontFamily="Montserrat"
-        Title="Password Manager" Height="500" Width="500" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="430" Background="#FF272727">
+        Title="Password Manager" Height="500" Width="450" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="430" Background="#FF272727">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -30,28 +30,32 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
+        <TextBlock x:Name="txblkUser" Grid.Column="4" Grid.Row="1" Text="User" HorizontalAlignment="Right"
+                   Foreground="#FFBFBEBE" FontSize="16" Margin="0,0,10,0"/>
+
         <TextBlock Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="10"
                    Text="Password Manager" FontSize="36" HorizontalAlignment="Center"
                    VerticalAlignment="Center" Foreground="#FFBFBEBE" FontWeight="Bold"/>
 
-        <Button x:Name="newButton" Content="new" Grid.Column="2" Grid.Row="6" Margin="10"
-                Width="100" MaxHeight="50" MaxWidth="100" Click="newButton_Click"
-                Background="#FFBFBEBE" Foreground="#FF272727" />
-        
-        <Button x:Name="viewButton" Content="view" Grid.Column="3" Grid.Row="6" Margin="10"
-                Width="100" MaxHeight="50" MaxWidth="100" Click="viewButton_Click"
-                Background="#FFBFBEBE" Foreground="#FF272727" Visibility="Collapsed"/>
+        <Button x:Name="newButton" Content="new" Grid.Column="2" Grid.Row="6" Margin="20"
+                Width="80" Height="25" MaxHeight="50" MaxWidth="100" Click="newButton_Click"
+                Background="#FFBFBEBE" Foreground="#FF272727" HorizontalAlignment="Left" />
 
-        <Button x:Name="deleteButton" Content="delete" Grid.Column="4" Grid.Row="6" Margin="10"
-                Width="100" MaxHeight="50" MaxWidth="100" Click="deleteButton_Click"
-                Background="#FFBFBEBE" Foreground="#FF272727" />
+        <Button x:Name="viewButton" Content="view" Grid.Column="3" Grid.Row="6" Margin="10"
+                Width="80" Height="25" MaxHeight="50" MaxWidth="100" Click="viewButton_Click"
+                HorizontalAlignment="Center" Background="#FFBFBEBE" Foreground="#FF272727"
+                Visibility="Collapsed"/>
+
+        <Button x:Name="deleteButton" Content="delete" Grid.Column="4" Grid.Row="6" Margin="20"
+                Width="80" Height="25" MaxHeight="50" MaxWidth="100" Click="deleteButton_Click"
+                Background="#FFBFBEBE" Foreground="#FF272727" HorizontalAlignment="Right"/>
 
         <Button x:Name="logOffButton" Content="log off" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="3"
                 Margin="10" Width="100" MaxHeight="50" MaxWidth="100" Click="logOffButton_Click"
                 Background="#FFBFBEBE" Foreground="#FF272727" />
 
         <ListBox x:Name="entriesListBox" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3"
-                 Margin="20" Background="#FFBFBEBE" SelectionChanged="entriesListBox_SelectionChanged"
+                 Margin="0, 0, 0, 20" Background="#FFBFBEBE" SelectionChanged="entriesListBox_SelectionChanged"
                  MinHeight="250" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ListBox.ItemTemplate>
                 <DataTemplate>
