@@ -15,9 +15,6 @@ using PassMgr.Services;
 
 namespace PassMgr
 {
-    /// <summary>
-    /// Interaction logic for AddEntry.xaml
-    /// </summary>
     public partial class AddEntry : Window
     {
         public AddEntry()
